@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+    volumes:
+      - ./server/uploads:/app/uploads
+    restart: unless-stopped
+
+  client:
+    build: ./client
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    restart: unless-stopped
