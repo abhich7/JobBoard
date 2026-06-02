@@ -16,16 +16,10 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-
-app.use("/uploads", express.static("uploads"));
-
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/jobs", jobRoutes);
-app.use("/api/applications", applicationRoutes);
-app.use("/api/employer", employerRoutes);
+app.use(cors({
+  origin: ["http://localhost:5173", "https://jobboard-app.vercel.app"],
+  credentials: true,
+}));
 
 app.get("/", (req, res) => {
   res.send("Job Board API Running");
