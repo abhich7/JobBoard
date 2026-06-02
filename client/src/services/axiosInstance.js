@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://jobboard-f4p8.onrender.com",
+  baseURL: "https://jobboard-xfm1.onrender.com",
 });
 
 axiosInstance.interceptors.request.use((config) => {

@@ -16,10 +16,26 @@ connectDB();
 
 const app = express();
 
-app.use(cors({
-  origin: ["http://localhost:5173", "https://job-board-gilt-ten.vercel.app/"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://job-board-gilt-ten.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+
+app.use("/uploads", express.static("uploads"));
+
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/jobs", jobRoutes);
+app.use("/api/applications", applicationRoutes);
+app.use("/api/employer", employerRoutes);
 
 app.get("/", (req, res) => {
   res.send("Job Board API Running");
