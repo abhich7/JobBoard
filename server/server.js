@@ -17,7 +17,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://jobboard-app.vercel.app"],
+  origin: ["http://localhost:5173", "https://job-board-gilt-ten.vercel.app/"],
   credentials: true,
 }));
 
