@@ -6,6 +6,7 @@ const path = require("path");
 dotenv.config();
 
 const connectDB = require("./config/db");
+
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const jobRoutes = require("./routes/jobRoutes");
@@ -16,17 +17,20 @@ connectDB();
 
 const app = express();
 
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://jobboard-app.vercel.app",
-  ],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      process.env.FRONTEND_URL,
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/auth", authRoutes);
@@ -36,15 +40,23 @@ app.use("/api/applications", applicationRoutes);
 app.use("/api/employer", employerRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "JobBoard API Running", status: "OK" });
+  res.status(200).json({
+    success: true,
+    message: "JobBoard API Running Successfully 🚀",
+  });
 });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ success: false, message: "Server error" });
+
+  res.status(500).json({
+    success: false,
+    message: "Internal Server Error",
+  });
 });
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
