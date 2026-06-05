@@ -22,7 +22,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:3000",
-      "https://job-board-seven-plum.vercel.app",
+      "job-board-git-main-abhis-projects-565bb302.vercel.app",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
