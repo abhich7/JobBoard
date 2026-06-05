@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://jobboard-pp5y.onrender.com/api",
+  baseURL: "https://jobboard-t0gp.onrender.com/api",
   withCredentials: true,
 });
 
