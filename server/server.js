@@ -22,9 +22,11 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:3000",
-      process.env.FRONTEND_URL,
+      "https://job-board-seven-plum.vercel.app",
     ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
